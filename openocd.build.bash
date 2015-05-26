@@ -2,10 +2,12 @@
 
 if [[ ! -d OpenOCD ]] ;
 then
-	git clone git://github.com/arduino/OpenOCD.git -b arduino
+	# git clone git://github.com/arduino/OpenOCD.git -b arduino
+	git clone https://github.com/ntfreak/openocd.git OpenOCD
 fi
 
 cd OpenOCD
+git reset --hard 7b8b2f944322161334e21f30709504e4d42da18e
 ./bootstrap
 cd -
 
@@ -41,4 +43,3 @@ fi
 nice -n 10 make -j $MAKE_JOBS
 
 make install
-

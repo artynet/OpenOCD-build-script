@@ -2,7 +2,8 @@
 
 if [[ ! -d hidapi ]] ;
 then
-	git clone git://github.com/arduino/hidapi.git
+	# git clone git://github.com/arduino/hidapi.git
+	git clone https://github.com/signal11/hidapi.git
 fi
 
 cd hidapi

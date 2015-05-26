@@ -1,11 +1,11 @@
 #!/bin/bash -ex
 
-if [[ ! -f libusb-1.0.18.tar.bz2 ]] ;
+if [[ ! -f libusb-1.0.19.tar.bz2 ]] ;
 then
-	wget http://downloads.sourceforge.net/project/libusb/libusb-1.0/libusb-1.0.18/libusb-1.0.18.tar.bz2
+	wget http://downloads.sourceforge.net/project/libusb/libusb-1.0/libusb-1.0.19/libusb-1.0.19.tar.bz2
 fi
 
-tar xfv libusb-1.0.18.tar.bz2
+tar xfv libusb-1.0.19.tar.bz2
 
 mkdir -p objdir
 cd objdir
@@ -16,7 +16,7 @@ mkdir -p libusb-build
 cd libusb-build
 
 
-../libusb-1.0.18/configure \
+../libusb-1.0.19/configure \
 	--prefix=$PREFIX
 
 #	--disable-shared \
