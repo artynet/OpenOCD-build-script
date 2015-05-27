@@ -16,4 +16,4 @@
 #	cd -
 #fi
 
-rm -rf libusb-1.0.19 libusb-compat-0.1.4 *-build hidapi objdir OpenOCD*
+rm -rf *.tar.bz2 *-build hidapi objdir OpenOCD* libusb-1.0.19 libusb-compat-0.1.4
