@@ -8,8 +8,9 @@ export HIDAPI_LDFLAGS="-lhidapi-libusb"
 rm -rf objdir
 
 ./libusb.build.bash
+./libusb-compat-0.1.build.bash
 USE_LOCAL_LIBUSB=yes ./hidapi.build.bash
-./openocd.build.bash
+USE_LOCAL_LIBUSB=yes ./openocd.build.bash
 
 if [[ -f objdir/bin/openocd ]] ;
 then
