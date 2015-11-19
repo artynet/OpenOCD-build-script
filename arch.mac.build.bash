@@ -16,7 +16,7 @@ USE_LOCAL_LIBUSB=yes ./openocd.build.bash
 if [[ -f objdir/bin/openocd ]] ;
 then
 	strip --strip-all objdir/bin/openocd
-	mv objdir/bin/openocd objdir/bin/openocd.bin
+	mv objdir/bin/openocd objdir/bin/openocd_bin
 	cp launchers/openocd.mac objdir/bin/openocd
 	chmod +x objdir/bin/openocd
 fi
