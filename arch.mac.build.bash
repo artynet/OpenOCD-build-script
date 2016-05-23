@@ -10,6 +10,10 @@ rm -rf objdir
 
 ./libusb.build.bash
 ./libusb-compat-0.1.build.bash
+./libftdi1.build.bash
+
+# exit 0
+
 USE_LOCAL_LIBUSB=yes ./hidapi.build.bash
 USE_LOCAL_LIBUSB=yes ./openocd.build.bash
 

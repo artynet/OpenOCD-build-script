@@ -2,8 +2,7 @@
 
 if [[ ! -d OpenOCD ]] ;
 then
-	# git clone git://github.com/arduino/OpenOCD.git -b arduino
-	git clone https://github.com/ntfreak/openocd.git OpenOCD
+	git clone https://github.com/arduino-org/openocd-official-mirror.git OpenOCD
 fi
 
 cd OpenOCD
@@ -21,19 +20,24 @@ cd openocd-build
 
 if [[ x$USE_LOCAL_LIBUSB == xyes ]];
 then
+	PKG_CONFIG_LIBDIR="${PREFIX}/lib/pkgconfig":"${PREFIX}/lib64/pkgconfig" \
 	CFLAGS="-w -O2 $CFLAGS" CXXFLAGS="-w -O2 $CXXFLAGS" LDFLAGS="$LDFLAGS" ../OpenOCD/configure \
 		--prefix=$PREFIX \
 		LIBUSB0_CFLAGS=-I${PREFIX}/include/ \
 		LIBUSB1_CFLAGS=-I${PREFIX}/include/libusb-1.0 \
 		HIDAPI_CFLAGS=-I${PREFIX}/include/hidapi \
+		LIBFTDI_CFLAGS=-I${PREFIX}/include/libftdi1 \
 		LIBUSB0_LIBS="-L${PREFIX}/lib -lusb" \
 		LIBUSB1_LIBS="-L${PREFIX}/lib -lusb-1.0" \
-		HIDAPI_LIBS="-L${PREFIX}/lib ${HIDAPI_LDFLAGS}"
+		HIDAPI_LIBS="-L${PREFIX}/lib ${HIDAPI_LDFLAGS}" \
+		LIBFTDI_LIBS="-L${PREFIX}/lib -lftdi1.2"
 else
 	CFLAGS="-w -O2 $CFLAGS" CXXFLAGS="-w -O2 $CXXFLAGS" LDFLAGS="$LDFLAGS" ../OpenOCD/configure \
 		--prefix=$PREFIX \
 		HIDAPI_CFLAGS=-I${PREFIX}/include/hidapi \
-		HIDAPI_LIBS="-L${PREFIX}/lib ${HIDAPI_LDFLAGS}"
+		HIDAPI_LIBS="-L${PREFIX}/lib ${HIDAPI_LDFLAGS}" \
+		LIBFTDI_CFLAGS=-I${PREFIX}/include/libftdi1 \
+		LIBFTDI_LIBS="-L${PREFIX}/lib -lftdi1.2"
 fi
 
 if [ -z "$MAKE_JOBS" ]; then
