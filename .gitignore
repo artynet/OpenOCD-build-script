@@ -2,3 +2,5 @@ libusb*
 hidapi*
 OpenOCD*
 openocd*
+libftdi1-*
+.DS_Store
