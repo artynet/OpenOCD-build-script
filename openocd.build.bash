@@ -30,14 +30,14 @@ then
 		LIBUSB0_LIBS="-L${PREFIX}/lib -lusb" \
 		LIBUSB1_LIBS="-L${PREFIX}/lib -lusb-1.0" \
 		HIDAPI_LIBS="-L${PREFIX}/lib ${HIDAPI_LDFLAGS}" \
-		LIBFTDI_LIBS="-L${PREFIX}/lib -lftdi1.2"
+		LIBFTDI_LIBS="-L${PREFIX}/lib -lftdi1"
 else
 	CFLAGS="-w -O2 $CFLAGS" CXXFLAGS="-w -O2 $CXXFLAGS" LDFLAGS="$LDFLAGS" ../OpenOCD/configure \
 		--prefix=$PREFIX \
 		HIDAPI_CFLAGS=-I${PREFIX}/include/hidapi \
 		HIDAPI_LIBS="-L${PREFIX}/lib ${HIDAPI_LDFLAGS}" \
 		LIBFTDI_CFLAGS=-I${PREFIX}/include/libftdi1 \
-		LIBFTDI_LIBS="-L${PREFIX}/lib -lftdi1.2"
+		LIBFTDI_LIBS="-L${PREFIX}/lib -lftdi1"
 fi
 
 if [ -z "$MAKE_JOBS" ]; then
