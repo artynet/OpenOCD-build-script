@@ -2,5 +2,6 @@ libusb*
 hidapi*
 OpenOCD*
 openocd*
-libftdi1-*
+*-build
 .DS_Store
+*.tar.bz2
