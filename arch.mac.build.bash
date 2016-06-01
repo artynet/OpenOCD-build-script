@@ -23,8 +23,7 @@ then
 	chmod +x objdir/bin/openocd
 fi
 
-# ARCH=`gcc -v 2>&1 | awk '/Target/ { print $2 }'`
-ARCH=universal
+ARCH=`gcc -v 2>&1 | awk '/Target/ { print $2 }'`
 
 rm -rf OpenOCD-0.9.0-arduino
 rm -f OpenOCD-0.9.0-arduino.org-$ARCH.tar.bz2
