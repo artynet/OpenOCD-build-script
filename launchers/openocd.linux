@@ -24,7 +24,7 @@ do
 done
 
 # Launch openocd but use the libs bundled inside the app
-# LD_LIBRARY_PATH="$MYAPP_HOME/lib" $0.bin "$@"
+# LD_LIBRARY_PATH="$MYAPP_HOME/lib" $0_bin "$@"
 
 # fixes blank spaces path issue
 export LD_LIBRARY_PATH="`dirname "$0"`/../lib/"
