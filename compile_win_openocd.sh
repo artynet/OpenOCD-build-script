@@ -17,8 +17,8 @@
 
 ARCH=`i686-w64-mingw32-gcc -v 2>&1 | awk '/Target/ { print $2 }'`
 
-mkdir -p distrib/$ARCH
-cd  distrib/$ARCH
+mkdir -p distrib/$ARCH/OpenOCD-0.10.0-nrf52-win32-static
+cd  distrib/$ARCH/OpenOCD-0.10.0-nrf52-win32-static
 PREFIX=`pwd`
 cd -
 
@@ -28,7 +28,7 @@ export CFLAGS="-mno-ms-bitfields"
 
 cd libusb-1.0.20
 export LIBUSB_DIR=`pwd`
-./configure --enable-static --disable-shared --host=i686-w64-mingw32
+./configure --enable-static --disable-shared --host=$ARCH
 make clean
 make
 cd ..
@@ -39,31 +39,13 @@ export LIBUSB1_LIBS="-L$LIBUSB_DIR/libusb/.libs/ -lusb-1.0 -lpthread"
 export LIBUSB_1_0_CFLAGS="-I$LIBUSB_DIR/libusb/"
 export LIBUSB_1_0_LIBS="-L$LIBUSB_DIR/libusb/.libs/ -lusb-1.0 -lpthread"
 
-cd libusb-compat-0.1.5
+cd libusb-compat-0.1
 export LIBUSB0_DIR=`pwd`
-autoreconf
-./configure --enable-static --disable-shared --host=i686-w64-mingw32
+./autogen.sh
+./configure --enable-static --disable-shared --host=$ARCH
 make clean
 make -j4
 cd ..
-
-
-#cd kmod-22
-#export KMOD_DIR=`pwd`
-#./configure --host=arm-linux-gnueabihf
-#make clean
-#make -j4
-#cd ..
-
-#export KMOD_CFLAGS="-I$KMOD_DIR/libkmod/"
-#export KMOD_LIBS="-L$KMOD_DIR/libkmod/.libs/ -lkmod"
-
-#cd eudev-3.1.5
-#export UDEV_DIR=`pwd`
-#./configure --enable-static --disable-shared --host=arm-linux-gnueabihf --disable-blkid --disable-kmod
-#make clean
-#make -j4
-#cd ..
 
 export libusb_CFLAGS="-I$LIBUSB_DIR/libusb/"
 export libusb_LIBS="-L$LIBUSB_DIR/libusb/.libs/ -lusb-1.0 -lpthread"
@@ -73,21 +55,21 @@ export libusb_LIBS="-L$LIBUSB_DIR/libusb/.libs/ -lusb-1.0 -lpthread"
 cd hidapi
 ./bootstrap
 export HIDAPI_DIR=`pwd`
-./configure --enable-static --disable-shared --host=i686-w64-mingw32
+./configure --enable-static --disable-shared --host=$ARCH
 make clean
 make -j4
 cd ..
 
-cd OpenOCD
+cd OpenOCD-0.10.0
 ./bootstrap
 export LIBUSB0_CFLAGS="-I$LIBUSB0_DIR/libusb/"
 export LIBUSB0_LIBS="-L$LIBUSB0_DIR/libusb/.libs/ -lusb -lpthread"
-export LIBUSB1_CFLAGS="-I$LIBUSB_DIR/libusb/" 
-export LIBUSB1_LIBS="-L$LIBUSB_DIR/libusb/.libs/ -lusb-1.0 -lpthread" 
+export LIBUSB1_CFLAGS="-I$LIBUSB_DIR/libusb/"
+export LIBUSB1_LIBS="-L$LIBUSB_DIR/libusb/.libs/ -lusb-1.0 -lpthread"
 export HIDAPI_CFLAGS="-I$HIDAPI_DIR/hidapi/"
-export HIDAPI_LIBS="-L$HIDAPI_DIR/windows/.libs/ -L$HIDAPI_DIR/libusb/.libs/ -lhidapi" 
+export HIDAPI_LIBS="-L$HIDAPI_DIR/windows/.libs/ -L$HIDAPI_DIR/libusb/.libs/ -lhidapi"
 export CFLAGS="-DHAVE_LIBUSB_ERROR_NAME"
-PKG_CONFIG_PATH=`pwd` ./configure --host=i686-w64-mingw32 --disable-jtag_vpi --prefix=$PREFIX
+PKG_CONFIG_PATH=`pwd` ./configure --host=$ARCH --disable-jtag_vpi --prefix=$PREFIX
 make clean
 CFLAGS=-static make
 make install
