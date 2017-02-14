@@ -14,10 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-
-platform=$(o64-clang -v 2>&1 | grep Target | awk {'print $2'} | sed 's/[.].*//g')
-
-ARCH=$platform
+ARCH=$(o64-clang -v 2>&1 | grep Target | awk {'print $2'} | sed 's/[.].*//g')
 
 mkdir -p distrib/$ARCH/OpenOCD-0.10.0-nrf52-osx-static
 cd  distrib/$ARCH/OpenOCD-0.10.0-nrf52-osx-static
@@ -30,7 +27,7 @@ export PKG_CONFIG_PATH=`pwd`
 cd libusb-1.0.20
 export LIBUSB_DIR=`pwd`
 CC=o64-clang CXX=o64-clang++ ./configure --enable-static --disable-shared --disable-udev \
-    --host=$platform
+    --host=$ARCH
 make clean
 make
 cd ..
@@ -45,7 +42,7 @@ cd libusb-compat-0.1.5
 export LIBUSB0_DIR=`pwd`
 autoreconf
 CC=o64-clang CXX=o64-clang++ ./configure --enable-static --disable-shared --disable-udev \
-    --host=$platform
+    --host=$ARCH
 make clean
 make
 cd ..
@@ -57,7 +54,7 @@ cd hidapi
 ./bootstrap
 export HIDAPI_DIR=`pwd`
 CC=o64-clang CXX=o64-clang++ ./configure --enable-static --disable-shared --disable-udev \
-    --host=$platform
+    --host=$ARCH
 make clean
 make -j4
 cd ..
@@ -74,7 +71,7 @@ export HIDAPI_LIBS="-L$HIDAPI_DIR/mac/.libs/ -L$HIDAPI_DIR/libusb/.libs/ -lhidap
 
 export CFLAGS="-DHAVE_LIBUSB_ERROR_NAME"
 PKG_CONFIG_PATH=`pwd` CC=o64-clang CXX=o64-clang++ ./configure --disable-werror --prefix=$PREFIX \
-    --host=$platform
+    --host=$ARCH
 make clean
 CFLAGS=-static make
 make install
