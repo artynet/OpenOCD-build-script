@@ -15,9 +15,18 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ARCH=`gcc -v 2>&1 | awk '/Target/ { print $2 }'`
+SUFFIX="linux64"
 
-mkdir -p distrib/$ARCH
-cd  distrib/$ARCH
+if [ ${1} == "32" ]
+then
+    ARCH=i686-linux-gnu
+    export CC="gcc -m32"
+    export CXX="g++ -m32"
+    SUFFIX="linux32"
+fi
+
+mkdir -p distrib/$ARCH/OpenOCD-0.10.0-nrf52-$SUFFIX-static
+cd  distrib/$ARCH/OpenOCD-0.10.0-nrf52-$SUFFIX-static
 PREFIX=`pwd`
 cd -
 
@@ -74,17 +83,17 @@ make clean
 make -j4
 cd ..
 
-cd OpenOCD
+cd OpenOCD-0.10.0
 ./bootstrap
-export LIBUSB0_CFLAGS="-I$LIBUSB0_DIR/libusb/" 
-export LIBUSB0_LIBS="-L$LIBUSB0_DIR/libusb/.libs/ -lusb -lpthread" 
-export LIBUSB1_CFLAGS="-I$LIBUSB_DIR/libusb/" 
-export LIBUSB1_LIBS="-L$LIBUSB_DIR/libusb/.libs/ -lusb-1.0 -lpthread" 
+export LIBUSB0_CFLAGS="-I$LIBUSB0_DIR/libusb/"
+export LIBUSB0_LIBS="-L$LIBUSB0_DIR/libusb/.libs/ -lusb -lpthread"
+export LIBUSB1_CFLAGS="-I$LIBUSB_DIR/libusb/"
+export LIBUSB1_LIBS="-L$LIBUSB_DIR/libusb/.libs/ -lusb-1.0 -lpthread"
 export HIDAPI_CFLAGS="-I$HIDAPI_DIR/hidapi/"
 
 if [[ ${ARCH} != *darwin* ]]; then
 
-export HIDAPI_LIBS="-L$HIDAPI_DIR/linux/.libs/ -L$HIDAPI_DIR/libusb/.libs/ -lhidapi-hidraw -lhidapi-libusb" 
+export HIDAPI_LIBS="-L$HIDAPI_DIR/linux/.libs/ -L$HIDAPI_DIR/libusb/.libs/ -lhidapi-hidraw -lhidapi-libusb"
 
 else
 
