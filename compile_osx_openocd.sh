@@ -16,8 +16,8 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ARCH=$(o64-clang -v 2>&1 | grep Target | awk {'print $2'} | sed 's/[.].*//g')
 
-mkdir -p distrib/$ARCH/OpenOCD-0.10.0-nrf52-osx-static
-cd  distrib/$ARCH/OpenOCD-0.10.0-nrf52-osx-static
+mkdir -p distrib/$ARCH/OpenOCD-0.9.0-osx-static
+cd distrib/$ARCH/OpenOCD-0.9.0-osx-static
 PREFIX=`pwd`
 cd -
 
@@ -59,7 +59,7 @@ make clean
 make -j4
 cd ..
 
-cd OpenOCD-0.10.0
+cd OpenOCD
 ./bootstrap
 export LIBUSB0_CFLAGS="-I$LIBUSB0_DIR/libusb/"
 export LIBUSB0_LIBS="-L$LIBUSB0_DIR/libusb/.libs/ -lusb"

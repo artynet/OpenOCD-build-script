@@ -18,8 +18,8 @@ ARCH=`arm-linux-gnueabihf-gcc -v 2>&1 | awk '/Target/ { print $2 }'`
 
 export CC=arm-linux-gnueabihf-gcc CXX=arm-linux-gnueabihf-g++
 
-mkdir -p distrib/$ARCH/OpenOCD-0.10.0-nrf52-arm-static
-cd  distrib/$ARCH/OpenOCD-0.10.0-nrf52-arm-static
+mkdir -p distrib/$ARCH/OpenOCD-0.9.0-arm-static
+cd distrib/$ARCH/OpenOCD-0.9.0-arm-static
 PREFIX=`pwd`
 cd -
 
@@ -77,7 +77,7 @@ make clean
 make -j4
 cd ..
 
-cd OpenOCD-0.10.0
+cd OpenOCD
 ./bootstrap
 export LIBUSB0_CFLAGS="-I$LIBUSB0_DIR/libusb/"
 export LIBUSB0_LIBS="-L$LIBUSB0_DIR/libusb/.libs/ -lusb -lpthread"

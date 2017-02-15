@@ -17,8 +17,8 @@
 
 ARCH=`i686-w64-mingw32-gcc -v 2>&1 | awk '/Target/ { print $2 }'`
 
-mkdir -p distrib/$ARCH/OpenOCD-0.10.0-nrf52-win32-static
-cd  distrib/$ARCH/OpenOCD-0.10.0-nrf52-win32-static
+mkdir -p distrib/$ARCH/OpenOCD-0.9.0-win32-static
+cd distrib/$ARCH/OpenOCD-0.9.0-win32-static
 PREFIX=`pwd`
 cd -
 
@@ -39,9 +39,9 @@ export LIBUSB1_LIBS="-L$LIBUSB_DIR/libusb/.libs/ -lusb-1.0 -lpthread"
 export LIBUSB_1_0_CFLAGS="-I$LIBUSB_DIR/libusb/"
 export LIBUSB_1_0_LIBS="-L$LIBUSB_DIR/libusb/.libs/ -lusb-1.0 -lpthread"
 
-cd libusb-compat-0.1
+cd libusb-compat-0.1.5
 export LIBUSB0_DIR=`pwd`
-./autogen.sh
+autoreconf
 ./configure --enable-static --disable-shared --host=$ARCH
 make clean
 make -j4
@@ -60,7 +60,7 @@ make clean
 make -j4
 cd ..
 
-cd OpenOCD-0.10.0
+cd OpenOCD
 ./bootstrap
 export LIBUSB0_CFLAGS="-I$LIBUSB0_DIR/libusb/"
 export LIBUSB0_LIBS="-L$LIBUSB0_DIR/libusb/.libs/ -lusb -lpthread"
