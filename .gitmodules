@@ -1,6 +1,6 @@
 [submodule "OpenOCD"]
 	path = OpenOCD
-	url = https://github.com/arduino/OpenOCD.git
+	url = https://github.com/artynet/OpenOCD.git
 [submodule "libusb-compat-0.1"]
 	path = libusb-compat-0.1
 	url = https://github.com/libusb/libusb-compat-0.1.git
