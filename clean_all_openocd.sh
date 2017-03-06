@@ -1,6 +1,6 @@
 #!/bin/bash
 
-list="libusb-1.0.20 libusb-compat-0.1.5 eudev-3.1.5 hidapi OpenOCD OpenOCD-0.10.0 libusb-compat-0.1"
+list="libusb-1.0.20 libusb-compat-0.1.5 eudev-3.1.5 hidapi OpenOCD libusb-compat-0.1"
 
 for i in $list
 do
