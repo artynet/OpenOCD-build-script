@@ -21,4 +21,7 @@ git reset --hard HEAD
 cd ..
 
 # removing useless files
-git clean -f -d
+if [ "$1" == "all" ]
+then
+    git clean -f -d
+fi
