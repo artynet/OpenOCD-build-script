@@ -3,7 +3,7 @@
           "version": "%%VERSION%%",
           "systems": [
             {
-              "host": "x86_64-apple-darwin11",
+              "host": "i386-apple-darwin11",
               "url": "http://download.arduino.org/tools/%%FILENAME_OSX%%",
               "archiveFileName": "%%FILENAME_OSX%%",
               "size": "%%SIZE_OSX%%",
