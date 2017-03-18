@@ -18,8 +18,8 @@ ARCH=`arm-linux-gnueabihf-gcc -v 2>&1 | awk '/Target/ { print $2 }'`
 
 export CC=arm-linux-gnueabihf-gcc CXX=arm-linux-gnueabihf-g++
 
-mkdir -p distrib/$ARCH/OpenOCD-0.9.0-arm-static
-cd distrib/$ARCH/OpenOCD-0.9.0-arm-static
+mkdir -p distrib/arm
+cd distrib/arm
 PREFIX=`pwd`
 cd -
 

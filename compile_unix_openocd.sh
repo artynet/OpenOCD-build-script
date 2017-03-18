@@ -25,8 +25,8 @@ then
     SUFFIX="linux32"
 fi
 
-mkdir -p distrib/$ARCH/OpenOCD-0.9.0-$SUFFIX-static
-cd distrib/$ARCH/OpenOCD-0.9.0-$SUFFIX-static
+mkdir -p distrib/$SUFFIX
+cd distrib/$SUFFIX
 PREFIX=`pwd`
 cd -
 

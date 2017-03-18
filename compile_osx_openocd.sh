@@ -16,8 +16,8 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ARCH=$(o64-clang -v 2>&1 | grep Target | awk {'print $2'} | sed 's/[.].*//g')
 
-mkdir -p distrib/$ARCH/OpenOCD-0.9.0-osx-static
-cd distrib/$ARCH/OpenOCD-0.9.0-osx-static
+mkdir -p distrib/osx
+cd distrib/osx
 PREFIX=`pwd`
 cd -
 
