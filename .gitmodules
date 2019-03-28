@@ -1,3 +1,6 @@
 [submodule "libusb-compat-0.1"]
 	path = libusb-compat-0.1
 	url = https://github.com/libusb/libusb-compat-0.1.git
+[submodule "OpenOCD"]
+	path = OpenOCD
+	url = git@github.com:artynet/OpenOCD.git
