@@ -24,7 +24,7 @@ cd -
 #disable pkg-config
 export PKG_CONFIG_PATH=`pwd`
 
-cd libusb-1.0.20
+cd libusb-1.0.22
 export LIBUSB_DIR=`pwd`
 CC=o64-clang CXX=o64-clang++ ./configure --enable-static --disable-shared --disable-udev \
     --host=$ARCH

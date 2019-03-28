@@ -26,7 +26,7 @@ cd -
 export PKG_CONFIG_PATH=`pwd`
 export CFLAGS="-mno-ms-bitfields"
 
-cd libusb-1.0.20
+cd libusb-1.0.22
 export LIBUSB_DIR=`pwd`
 ./configure --enable-static --disable-shared --host=$ARCH
 make clean

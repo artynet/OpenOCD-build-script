@@ -28,11 +28,11 @@ export PKG_CONFIG_PATH=`pwd`
 
 if [[ ${ARCH} != *darwin* ]]; then
 
-cd eudev-3.1.5
+cd eudev-3.2.7
 export UDEV_DIR=`pwd`
 ./autogen.sh
 ./configure --enable-static --disable-shared --disable-blkid --disable-kmod  --disable-manpages \
-    --host=$ARCH
+    --disable-selinux --host=$ARCH
 make clean
 make -j4
 cd ..
@@ -43,7 +43,7 @@ export LIBS="-ludev"
 
 fi
 
-cd libusb-1.0.20
+cd libusb-1.0.22
 export LIBUSB_DIR=`pwd`
 ./configure --enable-static --disable-shared --host=$ARCH
 make clean
