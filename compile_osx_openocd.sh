@@ -59,7 +59,7 @@ make clean
 make -j4
 cd ..
 
-cd OpenOCD-0.10.0
+cd OpenOCD
 ./bootstrap
 export LIBUSB0_CFLAGS="-I$LIBUSB0_DIR/libusb/"
 export LIBUSB0_LIBS="-L$LIBUSB0_DIR/libusb/.libs/ -lusb"
