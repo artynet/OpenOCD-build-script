@@ -39,9 +39,10 @@ export LIBUSB1_LIBS="-L$LIBUSB_DIR/libusb/.libs/ -lusb-1.0 -lpthread"
 export LIBUSB_1_0_CFLAGS="-I$LIBUSB_DIR/libusb/"
 export LIBUSB_1_0_LIBS="-L$LIBUSB_DIR/libusb/.libs/ -lusb-1.0 -lpthread"
 
-cd libusb-compat-0.1
+cd libusb-compat-0.1.7
 export LIBUSB0_DIR=`pwd`
-./autogen.sh
+# ./autogen.sh
+autoreconf
 ./configure --enable-static --disable-shared --host=$ARCH
 make clean
 make -j4
