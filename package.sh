@@ -15,7 +15,12 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-OUTPUT_VERSION=0.10.0-dev-ga7479fa8
+# detecting OpenOCD tag
+cd OpenOCD
+OCDGIT=$(git rev-parse --short=7 HEAD)
+cd ..
+
+OUTPUT_VERSION=0.10.0-dev-g${OCDGIT}
 
 export OS=`uname -o || uname`
 
