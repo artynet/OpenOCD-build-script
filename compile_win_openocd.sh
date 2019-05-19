@@ -28,6 +28,7 @@ export CFLAGS="-mno-ms-bitfields"
 
 cd libusb-1.0.22
 export LIBUSB_DIR=`pwd`
+autoreconf -i
 ./configure --enable-static --disable-shared --host=$ARCH
 make clean
 make
@@ -41,7 +42,7 @@ export LIBUSB_1_0_LIBS="-L$LIBUSB_DIR/libusb/.libs/ -lusb-1.0 -lpthread"
 
 cd libusb-compat-0.1
 export LIBUSB0_DIR=`pwd`
-./autogen.sh
+autoreconf -i
 ./configure --enable-static --disable-shared --host=$ARCH
 make clean
 make -j4

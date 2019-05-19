@@ -20,8 +20,8 @@ SUFFIX="linux64"
 if [[ ${1} == "32" ]]
 then
     ARCH=i686-linux-gnu
-    export CC="gcc -m32"
-    export CXX="g++ -m32"
+    export CC="i686-linux-gnu-gcc"
+    export CXX="i686-linux-gnu-g++"
     SUFFIX="linux32"
 fi
 
@@ -37,7 +37,7 @@ if [[ ${ARCH} != *darwin* ]]; then
 
 cd eudev-3.2.7
 export UDEV_DIR=`pwd`
-./autogen.sh
+autoreconf -i
 ./configure --enable-static --disable-shared --disable-blkid --disable-kmod  --disable-manpages --disable-selinux
 make clean
 make -j4
@@ -51,6 +51,7 @@ fi
 
 cd libusb-1.0.22
 export LIBUSB_DIR=`pwd`
+autoreconf -i
 ./configure --enable-static --disable-shared
 make clean
 make
@@ -64,7 +65,7 @@ export LIBUSB_1_0_LIBS="-L$LIBUSB_DIR/libusb/.libs/ -lusb-1.0 -lpthread"
 
 cd libusb-compat-0.1.5
 export LIBUSB0_DIR=`pwd`
-autoreconf
+autoreconf -i
 ./configure --enable-static --disable-shared
 make clean
 make
