@@ -15,7 +15,11 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-OUTPUT_VERSION=0.10.0-dev-ga7479fa8
+# get OpenOCD git release
+cd OpenOCD-0.10.0/
+OCDHASH=$(git rev-parse --short=7 HEAD)
+OUTPUT_VERSION=0.10.0-dev-g$OCDHASH
+cd ..
 
 export OS=`uname -o || uname`
 
@@ -36,6 +40,10 @@ export OS=`uname -o || uname`
 # arm
 ./clean_all_openocd.sh
 ./compile_arm_openocd.sh
+
+# arm64
+./clean_all_openocd.sh
+./compile_arm64_openocd.sh
 
 # osx
 ./clean_all_openocd.sh
