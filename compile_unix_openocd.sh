@@ -49,7 +49,7 @@ export LIBS="-ludev"
 
 fi
 
-cd libusb-1.0.20
+cd libusb-1.0.23
 export LIBUSB_DIR=`pwd`
 ./configure --enable-static --disable-shared
 make clean

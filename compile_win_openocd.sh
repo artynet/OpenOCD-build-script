@@ -26,7 +26,7 @@ cd -
 export PKG_CONFIG_PATH=`pwd`
 export CFLAGS="-mno-ms-bitfields"
 
-cd libusb-1.0.20
+cd libusb-1.0.23
 export LIBUSB_DIR=`pwd`
 ./autogen.sh
 ./configure --enable-static --disable-shared --host=i686-w64-mingw32

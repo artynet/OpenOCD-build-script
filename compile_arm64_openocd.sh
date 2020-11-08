@@ -43,7 +43,7 @@ export LIBS="-ludev"
 
 fi
 
-cd libusb-1.0.22
+cd libusb-1.0.23
 export LIBUSB_DIR=`pwd`
 autoreconf -i
 ./configure --enable-static --disable-shared --host=$ARCH
