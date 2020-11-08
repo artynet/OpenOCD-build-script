@@ -26,6 +26,7 @@ export PKG_CONFIG_PATH=`pwd`
 
 cd libusb-1.0.23
 export LIBUSB_DIR=`pwd`
+autoreconf -i
 CC=o64-clang CXX=o64-clang++ ./configure --enable-static --disable-shared --disable-udev \
     --host=$ARCH
 make clean
@@ -40,7 +41,7 @@ export LIBUSB_1_0_LIBS="-L$LIBUSB_DIR/libusb/.libs/ -lusb-1.0 -lpthread"
 
 cd libusb-compat-0.1.7
 export LIBUSB0_DIR=`pwd`
-autoreconf
+autoreconf -i
 CC=o64-clang CXX=o64-clang++ ./configure --enable-static --disable-shared --disable-udev \
     --host=$ARCH
 make clean

@@ -37,6 +37,10 @@ export OS=`uname -o || uname`
 ./clean_all_openocd.sh
 ./compile_arm_openocd.sh
 
+# arm64
+./clean_all_openocd.sh
+./compile_arm64_openocd.sh
+
 # osx
 ./clean_all_openocd.sh
 ./compile_osx_openocd.sh

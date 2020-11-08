@@ -30,7 +30,7 @@ if [[ ${ARCH} != *darwin* ]]; then
 
 cd eudev-3.2.9
 export UDEV_DIR=`pwd`
-autoreconf -i
+./autogen.sh
 ./configure --enable-static --disable-shared --disable-blkid --disable-kmod  --disable-manpages \
     --disable-selinux --host=$ARCH
 make clean

@@ -45,6 +45,7 @@ fi
 
 cd libusb-1.0.23
 export LIBUSB_DIR=`pwd`
+autoreconf -i
 ./configure --enable-static --disable-shared --host=$ARCH
 make clean
 make
@@ -58,7 +59,7 @@ export LIBUSB_1_0_LIBS="-L$LIBUSB_DIR/libusb/.libs/ -lusb-1.0 -lpthread"
 
 cd libusb-compat-0.1.7
 export LIBUSB0_DIR=`pwd`
-autoreconf
+autoreconf -i
 ./configure --enable-static --disable-shared --host=$ARCH
 make clean
 make
