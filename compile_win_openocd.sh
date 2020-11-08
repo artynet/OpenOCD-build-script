@@ -28,6 +28,7 @@ export CFLAGS="-mno-ms-bitfields"
 
 cd libusb-1.0.20
 export LIBUSB_DIR=`pwd`
+./autogen.sh
 ./configure --enable-static --disable-shared --host=i686-w64-mingw32
 make clean
 make
@@ -39,7 +40,7 @@ export LIBUSB1_LIBS="-L$LIBUSB_DIR/libusb/.libs/ -lusb-1.0 -lpthread"
 export LIBUSB_1_0_CFLAGS="-I$LIBUSB_DIR/libusb/"
 export LIBUSB_1_0_LIBS="-L$LIBUSB_DIR/libusb/.libs/ -lusb-1.0 -lpthread"
 
-cd libusb-compat-0.1.5
+cd libusb-compat-0.1.7
 export LIBUSB0_DIR=`pwd`
 automake --add-missing
 autoreconf
@@ -85,10 +86,10 @@ cd OpenOCD
 ./bootstrap
 export LIBUSB0_CFLAGS="-I$LIBUSB0_DIR/libusb/"
 export LIBUSB0_LIBS="-L$LIBUSB0_DIR/libusb/.libs/ -lusb -lpthread"
-export LIBUSB1_CFLAGS="-I$LIBUSB_DIR/libusb/" 
-export LIBUSB1_LIBS="-L$LIBUSB_DIR/libusb/.libs/ -lusb-1.0 -lpthread" 
+export LIBUSB1_CFLAGS="-I$LIBUSB_DIR/libusb/"
+export LIBUSB1_LIBS="-L$LIBUSB_DIR/libusb/.libs/ -lusb-1.0 -lpthread"
 export HIDAPI_CFLAGS="-I$HIDAPI_DIR/hidapi/"
-export HIDAPI_LIBS="-L$HIDAPI_DIR/windows/.libs/ -L$HIDAPI_DIR/libusb/.libs/ -lhidapi" 
+export HIDAPI_LIBS="-L$HIDAPI_DIR/windows/.libs/ -L$HIDAPI_DIR/libusb/.libs/ -lhidapi"
 export CFLAGS="-DHAVE_LIBUSB_ERROR_NAME"
 PKG_CONFIG_PATH=`pwd` ./configure --host=i686-w64-mingw32 $OPENOCD_COMPILE_SWITCHES --disable-jtag_vpi --prefix=$PREFIX
 make clean

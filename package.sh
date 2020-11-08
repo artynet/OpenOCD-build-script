@@ -15,7 +15,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-OUTPUT_VERSION=0.10.0-arduino2
+OUTPUT_VERSION=0.10.0-arduino13-static
 
 export OS=`uname -o || uname`
 
@@ -25,11 +25,11 @@ export OS=`uname -o || uname`
 ./clean_all_openocd.sh
 ./compile_win_openocd.sh
 
-#linux 64
+# linux 64
 ./clean_all_openocd.sh
 ./compile_unix_openocd.sh
 
-#linux 32
+# linux 32
 ./clean_all_openocd.sh
 ./compile_unix_openocd.sh 32
 
@@ -62,10 +62,10 @@ do
 	T_OS=`echo ${t_os} | awk '{print toupper($0)}'`
 	echo $T_OS
 	package_index=`echo $package_index |
-		sed s/%%FILENAME_${T_OS}%%/${FILENAME}/ |
-		sed s/%%FILENAME_${T_OS}%%/${FILENAME}/ |
-		sed s/%%SIZE_${T_OS}%%/${SIZE}/ |
-		sed s/%%SHA_${T_OS}%%/${SHASUM}/`
+		sed "s/%%FILENAME_${T_OS}%%/${FILENAME}/" |
+		sed "s/%%FILENAME_${T_OS}%%/${FILENAME}/" |
+		sed "s/%%SIZE_${T_OS}%%/${SIZE}/" |
+		sed "s/%%SHA_${T_OS}%%/${SHASUM}/"`
 done
 cd -
 
@@ -73,4 +73,4 @@ set +x
 
 echo ================== CUT ME HERE =====================
 
-echo ${package_index} | python -m json.tool
+echo ${package_index} | python3 -m json.tool

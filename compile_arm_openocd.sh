@@ -18,8 +18,8 @@ ARCH=`arm-linux-gnueabihf-gcc -v 2>&1 | awk '/Target/ { print $2 }'`
 
 export CC=arm-linux-gnueabihf-gcc CXX=arm-linux-gnueabihf-g++
 
-mkdir -p distrib/$ARCH/OpenOCD-0.10.0-nrf52-arm-static
-cd  distrib/$ARCH/OpenOCD-0.10.0-nrf52-arm-static
+mkdir -p distrib/$ARCH/OpenOCD-arm-static
+cd  distrib/$ARCH/OpenOCD-arm-static
 PREFIX=`pwd`
 cd -
 
@@ -28,11 +28,11 @@ export PKG_CONFIG_PATH=`pwd`
 
 if [[ ${ARCH} != *darwin* ]]; then
 
-cd eudev-3.1.5
+cd eudev-3.2.9
 export UDEV_DIR=`pwd`
 ./autogen.sh
 ./configure --enable-static --disable-shared --disable-blkid --disable-kmod  --disable-manpages \
-    --host=$ARCH
+    --disable-selinux --host=$ARCH
 make clean
 make -j4
 cd ..
@@ -56,7 +56,7 @@ export LIBUSB1_LIBS="-L$LIBUSB_DIR/libusb/.libs/ -lusb-1.0 -lpthread"
 export LIBUSB_1_0_CFLAGS="-I$LIBUSB_DIR/libusb/"
 export LIBUSB_1_0_LIBS="-L$LIBUSB_DIR/libusb/.libs/ -lusb-1.0 -lpthread"
 
-cd libusb-compat-0.1.5
+cd libusb-compat-0.1.7
 export LIBUSB0_DIR=`pwd`
 autoreconf
 ./configure --enable-static --disable-shared --host=$ARCH
@@ -77,7 +77,7 @@ make clean
 make -j4
 cd ..
 
-cd OpenOCD-0.10.0
+cd OpenOCD
 ./bootstrap
 export LIBUSB0_CFLAGS="-I$LIBUSB0_DIR/libusb/"
 export LIBUSB0_LIBS="-L$LIBUSB0_DIR/libusb/.libs/ -lusb -lpthread"

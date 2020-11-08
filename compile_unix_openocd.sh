@@ -17,16 +17,16 @@
 ARCH=`gcc -v 2>&1 | awk '/Target/ { print $2 }'`
 SUFFIX="linux64"
 
-if [ ${1} == "32" ]
+if [[ ${1} == "32" ]]
 then
     ARCH=i686-linux-gnu
-    export CC="gcc -m32"
-    export CXX="g++ -m32"
+    export CC="i686-linux-gnu-gcc"
+    export CXX="i686-linux-gnu-g++"
     SUFFIX="linux32"
 fi
 
-mkdir -p distrib/$ARCH/OpenOCD-0.10.0-nrf52-$SUFFIX-static
-cd  distrib/$ARCH/OpenOCD-0.10.0-nrf52-$SUFFIX-static
+mkdir -p distrib/$ARCH/OpenOCD-$SUFFIX-static
+cd  distrib/$ARCH/OpenOCD-$SUFFIX-static
 PREFIX=`pwd`
 cd -
 
@@ -35,7 +35,7 @@ export PKG_CONFIG_PATH=`pwd`
 
 if [[ ${ARCH} != *darwin* ]]; then
 
-cd eudev-3.1.5
+cd eudev-3.2.9
 export UDEV_DIR=`pwd`
 ./autogen.sh
 ./configure --enable-static --disable-shared --disable-blkid --disable-kmod  --disable-manpages
@@ -62,9 +62,9 @@ export LIBUSB1_LIBS="-L$LIBUSB_DIR/libusb/.libs/ -lusb-1.0 -lpthread"
 export LIBUSB_1_0_CFLAGS="-I$LIBUSB_DIR/libusb/"
 export LIBUSB_1_0_LIBS="-L$LIBUSB_DIR/libusb/.libs/ -lusb-1.0 -lpthread"
 
-cd libusb-compat-0.1.5
+cd libusb-compat-0.1.7
 export LIBUSB0_DIR=`pwd`
-automake --add-missing
+# automake --add-missing
 autoreconf
 ./configure --enable-static --disable-shared
 make clean
@@ -84,7 +84,7 @@ make clean
 make -j4
 cd ..
 
-cd OpenOCD-0.10.0
+cd OpenOCD
 ./bootstrap
 export LIBUSB0_CFLAGS="-I$LIBUSB0_DIR/libusb/"
 export LIBUSB0_LIBS="-L$LIBUSB0_DIR/libusb/.libs/ -lusb -lpthread"

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-list="libusb-1.0.20 libusb-compat-0.1.5 eudev-3.1.5 hidapi OpenOCD-0.10.0 libusb-compat-0.1"
+list="libusb-1.0.23 libusb-compat-0.1.7 eudev-3.2.9 hidapi OpenOCD libusb-compat-0.1"
 
 for i in $list
 do
@@ -13,7 +13,7 @@ done
 git checkout hidapi
 
 # reset libusb-compat-0.1.5 module
-git checkout libusb-compat-0.1.5
+git checkout libusb-compat-0.1.7
 
 # reset libusb-compat-0.1 trunk
 cd libusb-compat-0.1/

@@ -28,7 +28,7 @@ export PKG_CONFIG_PATH=`pwd`
 
 if [[ ${ARCH} != *darwin* ]]; then
 
-cd eudev-3.2.7
+cd eudev-3.2.9
 export UDEV_DIR=`pwd`
 autoreconf -i
 ./configure --enable-static --disable-shared --disable-blkid --disable-kmod  --disable-manpages \
@@ -57,7 +57,7 @@ export LIBUSB1_LIBS="-L$LIBUSB_DIR/libusb/.libs/ -lusb-1.0 -lpthread"
 export LIBUSB_1_0_CFLAGS="-I$LIBUSB_DIR/libusb/"
 export LIBUSB_1_0_LIBS="-L$LIBUSB_DIR/libusb/.libs/ -lusb-1.0 -lpthread"
 
-cd libusb-compat-0.1.5
+cd libusb-compat-0.1.7
 export LIBUSB0_DIR=`pwd`
 autoreconf -i
 ./configure --enable-static --disable-shared --host=$ARCH
@@ -78,7 +78,7 @@ make clean
 make -j4
 cd ..
 
-cd OpenOCD-0.10.0
+cd OpenOCD
 ./bootstrap
 export LIBUSB0_CFLAGS="-I$LIBUSB0_DIR/libusb/"
 export LIBUSB0_LIBS="-L$LIBUSB0_DIR/libusb/.libs/ -lusb -lpthread"

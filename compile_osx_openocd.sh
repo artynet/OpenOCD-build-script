@@ -16,8 +16,8 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ARCH=$(o64-clang -v 2>&1 | grep Target | awk {'print $2'} | sed 's/[.].*//g')
 
-mkdir -p distrib/$ARCH/OpenOCD-0.10.0-nrf52-osx-static
-cd  distrib/$ARCH/OpenOCD-0.10.0-nrf52-osx-static
+mkdir -p distrib/$ARCH/OpenOCD-osx-static
+cd  distrib/$ARCH/OpenOCD-osx-static
 PREFIX=`pwd`
 cd -
 
@@ -38,7 +38,7 @@ export LIBUSB1_LIBS="-L$LIBUSB_DIR/libusb/.libs/ -lusb-1.0 -lpthread"
 export LIBUSB_1_0_CFLAGS="-I$LIBUSB_DIR/libusb/"
 export LIBUSB_1_0_LIBS="-L$LIBUSB_DIR/libusb/.libs/ -lusb-1.0 -lpthread"
 
-cd libusb-compat-0.1.5
+cd libusb-compat-0.1.7
 export LIBUSB0_DIR=`pwd`
 autoreconf
 CC=o64-clang CXX=o64-clang++ ./configure --enable-static --disable-shared --disable-udev \
@@ -59,7 +59,7 @@ make clean
 make -j4
 cd ..
 
-cd OpenOCD-0.10.0
+cd OpenOCD
 ./bootstrap
 export LIBUSB0_CFLAGS="-I$LIBUSB0_DIR/libusb/"
 export LIBUSB0_LIBS="-L$LIBUSB0_DIR/libusb/.libs/ -lusb"
