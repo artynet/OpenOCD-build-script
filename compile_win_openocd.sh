@@ -17,8 +17,8 @@
 
 ARCH=`i686-w64-mingw32-gcc -v 2>&1 | awk '/Target/ { print $2 }'`
 
-mkdir -p distrib/$ARCH
-cd  distrib/$ARCH
+mkdir -p distrib/windows
+cd  distrib/windows
 PREFIX=`pwd`
 cd -
 
