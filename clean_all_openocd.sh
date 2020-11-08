@@ -12,7 +12,7 @@ done
 # reset hidapi
 git checkout hidapi
 
-# reset libusb-compat-0.1.5 module
+# reset libusb-compat-0.1.7 module
 git checkout libusb-compat-0.1.7
 
 # reset libusb-compat-0.1 trunk
