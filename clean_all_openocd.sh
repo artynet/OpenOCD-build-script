@@ -15,10 +15,11 @@ git checkout hidapi
 # reset libusb-compat-0.1.7 module
 git checkout libusb-compat-0.1.7
 
+# reset eudev-3.2.9 module
+git checkout eudev-3.2.9
+
 # reset libusb-compat-0.1 trunk
-cd libusb-compat-0.1/
-git reset --hard HEAD
-cd ..
+git checkout libusb-compat-0.1
 
 # removing useless files
 if [ "$1" == "all" ]
