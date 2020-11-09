@@ -19,7 +19,12 @@ git checkout libusb-compat-0.1.7
 git checkout eudev-3.2.9
 
 # reset libusb-compat-0.1 trunk
-git checkout libusb-compat-0.1
+cd libusb-compat-0.1
+git reset --hard origin/HEAD
+cd ..
+
+# reset libusb-1.0.23 module
+git clean -f -d
 
 # removing useless files
 if [ "$1" == "all" ]
